@@ -49,16 +49,17 @@ def run():
         model_dir='pretrained_models/Fun-CosyVoice3-0.5B'
     )
 
-    os.makedirs("outputs_0506_fixed", exist_ok=True)
+    os.makedirs("outputs_0507_fixed", exist_ok=True)
 
     prompt_wav = "./asset/final_prompt.wav"
-
+    
     instruct = (
-        'You are a helpful assistant. '
-        'Please preserve the original speaker voice as much as possible. '
-        'Speak naturally and casually in Korean, with a subtle playful and romantic feeling. '
-        'Follow the laughter cues naturally, but do not overact.'
-        '<|endofprompt|>'
+        "You are a helpful assistant. "
+        "Please preserve the original speaker voice as much as possible. "
+        "Speak in a very soft, breathy Korean tone — gentle and unhurried, like a quiet murmur to oneself. "
+        "The mood is calm and slightly weary, not mocking — just softly observing. "
+        "Any laughter should be a tired, hollow exhale not a chuckle, just a soft breath of amusement. "
+        "<|endofprompt|>"
     )
 
     scene1_lines = [
@@ -66,7 +67,7 @@ def run():
         "근데, [breath] 어제 한 여자를 만났대.",
         "그 여자 이름이 [breath] 차 은상이래.",
         "근데 차은상한테 궁금한 게 생겼대.",
-        "혹시... , <strong>나 너 좋아하냐?</strong>"
+        "혹시, [breath] <strong>나 너 좋아하냐?</strong>"
     ]
     
     scene_2_lines = [
@@ -96,7 +97,7 @@ def run():
     ]
     
     scene_5_lines = [
-        "야!",
+        "야..!",
         "넌 왜 맨날 이런데서 자냐..",
         "지켜주고 싶게."
     ]
@@ -108,11 +109,11 @@ def run():
     ]
     
     scenes = [
-        scene1_lines,
-        scene_2_lines,
-        scene_3_lines,
-        scene_4_lines,
-        scene_5_lines,
+        # scene1_lines,
+        # scene_2_lines,
+        # scene_3_lines,
+        # scene_4_lines,
+        # scene_5_lines,
         scene_6_lines,
     ]
 
@@ -145,7 +146,7 @@ def run():
             for part in parts[1:]:
                 combined = torch.cat([combined, silence, part], dim=1)
 
-            out_path = f"outputs_0506/scene{scene_idx}_normal_{speed}.wav"
+            out_path = f"outputs_0507/scene6_normal_{speed}.wav"
             torchaudio.save(out_path, combined, cosyvoice.sample_rate)
             print(f"✅ saved: {out_path}")
 
